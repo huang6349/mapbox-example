@@ -1,0 +1,83 @@
+{
+  "version": 8,
+  "name": "basic",
+  "center": [114.29, 30.55],
+  "sources": {
+    "water": {
+      "type": "vector",
+      "scheme": "tms",
+      "tiles": ["#{BASEURL}#{TMSURL}/#{WORKSPACE}:#{WATER}@EPSG:#{EPSG}@pbf/{z}/{x}/{y}.pbf"]
+    },
+    "roads": {
+      "type": "vector",
+      "scheme": "tms",
+      "tiles": ["#{BASEURL}#{TMSURL}/#{WORKSPACE}:#{ROAD}@EPSG:#{EPSG}@pbf/{z}/{x}/{y}.pbf"]
+    },
+    "buildings": {
+      "type": "vector",
+      "scheme": "tms",
+      "tiles": ["#{BASEURL}#{TMSURL}/#{WORKSPACE}:#{BUILDING}@EPSG:#{EPSG}@pbf/{z}/{x}/{y}.pbf"]
+    }
+  },
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": {
+        "background-color": "#{BACKGROUND_COLOR}"
+      }
+    },
+    {
+      "id": "water",
+      "source": "water",
+      "source-layer": "water",
+      "type": "fill",
+      "paint": {
+        "fill-color": "#{WATER_COLOR}"
+      }
+    },
+    {
+      "id": "roads",
+      "source": "roads",
+      "source-layer": "roads",
+      "type": "line",
+      "minzoom": 9,
+      "paint": {
+        "line-width": ["interpolate", ["exponential", 1.75], ["zoom"], 5, 0.75, 18, 32],
+        "line-color": "#{ROAD_COLOR}"
+      }
+    },
+    {
+      "id": "roads-case",
+      "source": "roads",
+      "source-layer": "roads",
+      "type": "line",
+      "minzoom": 9,
+      "paint": {
+        "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 10, 1, 18, 2],
+        "line-color": "#{ROAD_CASE_COLOR}",
+        "line-gap-width": ["interpolate", ["exponential", 1.75], ["zoom"], 5, 0.75, 18, 32]
+      }
+    },
+    {
+      "id": "buildings",
+      "source": "buildings",
+      "source-layer": "buildings",
+      "type": "fill-extrusion",
+      "minzoom": 10,
+      "paint": {
+        "fill-extrusion-opacity": 0.8,
+        "fill-extrusion-color": [
+          "interpolate",
+          ["linear"],
+          ["*", 4, ["to-number", ["get", "floor"]]],
+          0,
+          "#{BUILDING_SHORT_COLOR}",
+          50,
+          "#{BUILDING_HIGH_COLOR}"
+        ],
+        "fill-extrusion-height": ["*", 5, ["to-number", ["get", "floor"]]]
+      }
+    }
+  ]
+}

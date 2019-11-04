@@ -21,10 +21,12 @@
     "prop-types": "15.6.2",
     "react": "16.8.6",
     "react-dom": "16.8.6",
+    "react-map-gl": "^5.1.1",
     "react-use": "^12.13.0",
     "rebound": "^0.1.0",
     "redux": "3.7.2",
-    "sockette": "^2.0.5"
+    "sockette": "^2.0.5",
+    "stats.js": "^0.17.0"
   },
   "devDependencies": {
     "babel-eslint": "^9.0.0",

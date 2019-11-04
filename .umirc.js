@@ -40,6 +40,18 @@ export default {
     '@table-padding-vertical': '10px',
     '@table-padding-horizontal': '12px',
   },
+  define: {
+    'process.env.GEOSERVER': {
+      BASEURL: 'http://129.211.24.130:6066',
+      TMSURL: '/geoserver/gwc/service/tms/1.0.0',
+      WORKSPACE: 'wuhan',
+      EPSG: '900913',
+      WATER: 'water',
+      ROAD: 'roads',
+      BUILDING: 'buildings',
+    },
+    'process.env.MAPCENTRE': [114.27917, 30.5725],
+  },
   extraBabelPlugins: [
     [
       'import',
