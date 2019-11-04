@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([[6],{RXBc:function(e,n,t){"use strict";t.r(n);var a=t("q1tI"),u=t("usdK"),c=t.n(u),r=function(){return a["useEffect"](function(){c.a.push({pathname:"/camera",query:{k:(new Date).getTime()}})},[]),a["createElement"](a["Fragment"],null)};n["default"]=r}}]);

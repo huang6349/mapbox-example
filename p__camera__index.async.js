@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([[2],{JqDD:function(e,n,t){"use strict";t.r(n);var a=t("q1tI"),u=t("usdK"),c=t.n(u),r=function(){return a["useEffect"](function(){c.a.replace({pathname:"/camera/into",query:{k:(new Date).getTime()}})},[]),a["createElement"](a["Fragment"],null)};n["default"]=r}}]);
