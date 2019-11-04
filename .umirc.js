@@ -27,7 +27,7 @@ export default {
         pwa: false,
         hd: false,
         fastClick: false,
-        title: 'basic-project-template',
+        title: 'mapbox-example',
       },
     ],
   ],
