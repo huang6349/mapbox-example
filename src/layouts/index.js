@@ -9,7 +9,15 @@ const BasicLayout = ({ location: { pathname }, children }) => {
   const [breadcrumb, setBreadcrumb] = React.useState('视角/进场视角');
 
   React.useEffect(() => {
-    setBreadcrumb('视角/进场视角');
+    if (pathname === '/camera/into') {
+      setBreadcrumb('视角/进场视角');
+    } else if (pathname === '/camera/rotate2d') {
+      setBreadcrumb('2D旋转视角');
+    } else if (pathname === '/camera/rotate3d') {
+      setBreadcrumb('3D旋转视角');
+    } else {
+      setBreadcrumb('未知');
+    }
   }, [pathname]);
 
   const [fps] = usePerformanceMonitor();
@@ -24,6 +32,8 @@ const BasicLayout = ({ location: { pathname }, children }) => {
         <Menu theme="dark" mode="inline" selectedKeys={[]} onClick={handleClick}>
           <Menu.SubMenu key="/camera" title={<SubMenuTitle icon="eye" name="视角" />}>
             <Menu.Item key="/camera/into">进场视角</Menu.Item>
+            <Menu.Item key="/camera/rotate2d">2D旋转视角</Menu.Item>
+            <Menu.Item key="/camera/rotate3d">3D旋转视角</Menu.Item>
           </Menu.SubMenu>
         </Menu>
       </Layout.Sider>
