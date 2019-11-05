@@ -8,12 +8,12 @@ const IndexPage = () => {
   const [viewport, setViewport] = React.useState({
     longitude: MAPCENTRE[0],
     latitude: MAPCENTRE[1],
-    zoom: 12,
+    zoom: 11,
     bearing: 0,
     pitch: 0,
     scrollZoom: !0,
     dragPan: !0,
-    dragRotate: !1,
+    dragRotate: !0,
     doubleClickZoom: !0,
   });
 

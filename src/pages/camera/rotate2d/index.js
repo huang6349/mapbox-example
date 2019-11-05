@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ReactMapGL, { TRANSITION_EVENTS, LinearInterpolator } from 'react-map-gl';
 import { LIGHT } from '@/services/mapbox';
-import { useRotateCamera } from './hooks';
+import { useRotateCamera } from '@/hooks';
 
 const { MAPCENTRE } = process.env;
 
@@ -20,7 +20,7 @@ const IndexPage = () => {
     doubleClickZoom: !1,
   });
 
-  const [rotateCameraViewport] = useRotateCamera(viewport, map, !0);
+  const [rotateCameraViewport] = useRotateCamera({ viewport, map, disable: !0 });
 
   React.useEffect(() => {
     setViewport((viewport) => ({ ...viewport, ...rotateCameraViewport }));
