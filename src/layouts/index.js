@@ -12,9 +12,9 @@ const BasicLayout = ({ location: { pathname }, children }) => {
     if (pathname === '/camera/into') {
       setBreadcrumb('视角/进场视角');
     } else if (pathname === '/camera/rotate2d') {
-      setBreadcrumb('2D旋转视角');
+      setBreadcrumb('视角/2D旋转视角');
     } else if (pathname === '/camera/rotate3d') {
-      setBreadcrumb('3D旋转视角');
+      setBreadcrumb('视角/3D旋转视角');
     } else {
       setBreadcrumb('未知');
     }
