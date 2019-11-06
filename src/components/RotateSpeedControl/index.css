@@ -1,0 +1,17 @@
+.wrapper {
+  padding: 14px 13px;
+  width: 220px;
+  height: 38px;
+  background: #ffffff;
+  border: none;
+  border-radius: 2px;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper :global(.ant-slider) {
+  margin: 0;
+}
+
+.wrapper:global(.ant-card .ant-card-body) {
+  padding: 1px 8px;
+}

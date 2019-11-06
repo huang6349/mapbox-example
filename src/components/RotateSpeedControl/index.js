@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { BaseControl } from 'react-map-gl';
-import { Card, Slider } from 'antd';
+import { Slider } from 'antd';
 import styles from './index.css';
 
 export default class SpeedControl extends BaseControl {
@@ -13,19 +13,20 @@ export default class SpeedControl extends BaseControl {
   };
 
   static defaultProps = {
-    captureScroll: false,
-    captureDrag: false,
-    captureClick: false,
-    captureDoubleClick: false,
+    captureScroll: true,
+    captureDrag: true,
+    captureClick: true,
+    captureDoubleClick: true,
     defaultValue: 0,
   };
 
   _render() {
     const { defaultValue, onAfterChange } = this.props;
+
     return (
-      <Card className={styles['wrapper']} ref={this._containerRef}>
+      <div className={styles['wrapper']} ref={this._containerRef}>
         <Slider defaultValue={defaultValue} onAfterChange={onAfterChange} />
-      </Card>
+      </div>
     );
   }
 }
