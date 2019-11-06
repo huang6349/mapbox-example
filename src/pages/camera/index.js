@@ -3,7 +3,7 @@ import router from 'umi/router';
 
 const IndexPage = function() {
   React.useEffect(() => {
-    router.replace({ pathname: '/camera/into', query: { k: new Date().getTime() } });
+    router.replace({ pathname: '/camera/mode', query: { k: new Date().getTime() } });
   }, []);
 
   return <React.Fragment />;

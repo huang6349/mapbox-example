@@ -1,6 +1,8 @@
 import * as React from 'react';
 import ReactMapGL, { TRANSITION_EVENTS, LinearInterpolator } from 'react-map-gl';
+import { MapModeControl } from '@/components';
 import { LIGHT } from '@/services/mapbox';
+import styles from './index.css';
 
 const { MAPCENTRE } = process.env;
 
@@ -13,20 +15,21 @@ const IndexPage = () => {
     pitch: 0,
     scrollZoom: !0,
     dragPan: !0,
-    dragRotate: !0,
+    dragRotate: !1,
     doubleClickZoom: !0,
   });
 
-  const handleLoad = () => {
+  const [inTransition, setInTransition] = React.useState(!0);
+
+  const [mode, setMode] = React.useState('2D');
+
+  React.useLayoutEffect(() => {
     setViewport((viewport) => ({
       ...viewport,
-      longitude: MAPCENTRE[0],
-      latitude: MAPCENTRE[1],
-      zoom: 12,
-      pitch: 45,
+      pitch: mode === '2D' ? 0 : 60,
       transitionDuration: 1000,
     }));
-  };
+  }, [mode]);
 
   const handleViewportChange = (viewState) => setViewport({ ...viewport, ...viewState });
 
@@ -41,9 +44,14 @@ const IndexPage = () => {
       maxZoom={18}
       transitionInterruption={TRANSITION_EVENTS.IGNORE}
       transitionInterpolator={new LinearInterpolator()}
-      onLoad={handleLoad}
+      onLoad={() => setMode('3D')}
       onViewportChange={handleViewportChange}
-    ></ReactMapGL>
+      onInteractionStateChange={({ inTransition }) => setInTransition(inTransition)}
+    >
+      <div className={styles['control']}>
+        <MapModeControl inTransition={inTransition} onChange={(value) => setMode(value)} />
+      </div>
+    </ReactMapGL>
   );
 };
 
