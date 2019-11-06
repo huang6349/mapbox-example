@@ -1,6 +1,7 @@
 import * as React from 'react';
+import * as classNames from 'classnames';
 import ReactMapGL, { TRANSITION_EVENTS, LinearInterpolator } from 'react-map-gl';
-import { SpeedControl } from '@/components';
+import { SpeedControl, RotateModeControl } from '@/components';
 import { LIGHT } from '@/services/mapbox';
 import { useRotateCamera } from '@/hooks';
 import styles from './index.css';
@@ -25,8 +26,9 @@ const IndexPage = () => {
   });
 
   const [speed, setSpeed] = React.useState(DEFAULT_SPEED);
+  const [mode, setMode] = React.useState('default');
 
-  const [rotateCameraViewport] = useRotateCamera({ viewport, map, disable: !0, speed });
+  const [rotateCameraViewport] = useRotateCamera({ viewport, map, disable: !0, speed, mode });
 
   React.useEffect(() => {
     setViewport((viewport) => ({ ...viewport, ...rotateCameraViewport }));
@@ -50,6 +52,9 @@ const IndexPage = () => {
     >
       <div className={styles['control']}>
         <SpeedControl defaultValue={DEFAULT_SPEED} onAfterChange={(value) => setSpeed(value)} />
+      </div>
+      <div className={classNames([styles['control'], styles['mode']])}>
+        <RotateModeControl mode={mode} onChange={(value) => setMode(value)} />
       </div>
     </ReactMapGL>
   );

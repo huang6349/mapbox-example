@@ -7,3 +7,7 @@
   left: inherit;
   pointer-events: auto;
 }
+
+.control.mode {
+  right: 240px;
+}
