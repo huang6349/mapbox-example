@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { BaseControl } from 'react-map-gl';
-import { Card, Icon } from 'antd';
+import { Button } from 'antd';
 import styles from './index.css';
 
 export default class RotateModeControl extends BaseControl {
@@ -13,10 +13,10 @@ export default class RotateModeControl extends BaseControl {
   };
 
   static defaultProps = {
-    captureScroll: false,
-    captureDrag: false,
-    captureClick: false,
-    captureDoubleClick: false,
+    captureScroll: true,
+    captureDrag: true,
+    captureClick: true,
+    captureDoubleClick: true,
     mode: 'default',
   };
 
@@ -34,9 +34,9 @@ export default class RotateModeControl extends BaseControl {
     const { mode } = this.props;
 
     return (
-      <Card className={styles['wrapper']} ref={this._containerRef} onClick={this._handleClick}>
-        <Icon type={mode === 'default' ? 'sync' : 'redo'} />
-      </Card>
+      <div className={styles['wrapper']} ref={this._containerRef}>
+        <Button icon={mode === 'default' ? 'sync' : 'redo'} onClick={this._handleClick} />
+      </div>
     );
   }
 }
