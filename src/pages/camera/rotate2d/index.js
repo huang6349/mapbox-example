@@ -1,9 +1,13 @@
 import * as React from 'react';
 import ReactMapGL, { TRANSITION_EVENTS, LinearInterpolator } from 'react-map-gl';
+import { SpeedControl } from '@/components';
 import { LIGHT } from '@/services/mapbox';
 import { useRotateCamera } from '@/hooks';
+import styles from './index.css';
 
 const { MAPCENTRE } = process.env;
+
+const DEFAULT_SPEED = 5;
 
 const IndexPage = () => {
   const [map, setMap] = React.useState(null);
@@ -20,7 +24,9 @@ const IndexPage = () => {
     doubleClickZoom: !1,
   });
 
-  const [rotateCameraViewport] = useRotateCamera({ viewport, map, disable: !0 });
+  const [speed, setSpeed] = React.useState(DEFAULT_SPEED);
+
+  const [rotateCameraViewport] = useRotateCamera({ viewport, map, disable: !0, speed });
 
   React.useEffect(() => {
     setViewport((viewport) => ({ ...viewport, ...rotateCameraViewport }));
@@ -41,7 +47,11 @@ const IndexPage = () => {
       transitionInterpolator={new LinearInterpolator()}
       onLoad={({ target }) => setMap(target)}
       onViewportChange={handleViewportChange}
-    ></ReactMapGL>
+    >
+      <div className={styles['control']}>
+        <SpeedControl defaultValue={DEFAULT_SPEED} onAfterChange={(value) => setSpeed(value)} />
+      </div>
+    </ReactMapGL>
   );
 };
 
