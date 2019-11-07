@@ -15,6 +15,8 @@ const BasicLayout = ({ location: { pathname }, children }) => {
       setBreadcrumb('视角/2D旋转视角');
     } else if (pathname === '/camera/rotate3d') {
       setBreadcrumb('视角/3D旋转视角');
+    } else if (pathname === '/camera/underground') {
+      setBreadcrumb('主题/（地上/地下）模式转换');
     } else {
       setBreadcrumb('未知');
     }
@@ -34,6 +36,7 @@ const BasicLayout = ({ location: { pathname }, children }) => {
             <Menu.Item key="/camera/mode">2D/3D视角切换</Menu.Item>
             <Menu.Item key="/camera/rotate2d">2D旋转视角</Menu.Item>
             <Menu.Item key="/camera/rotate3d">3D旋转视角</Menu.Item>
+            <Menu.Item key="/camera/underground">地上/地下视角切换</Menu.Item>
           </Menu.SubMenu>
         </Menu>
       </Layout.Sider>
