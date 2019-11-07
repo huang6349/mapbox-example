@@ -16,7 +16,7 @@ const BasicLayout = ({ location: { pathname }, children }) => {
     } else if (pathname === '/camera/rotate3d') {
       setBreadcrumb('视角/3D旋转视角');
     } else if (pathname === '/camera/underground') {
-      setBreadcrumb('主题/（地上/地下）模式转换');
+      setBreadcrumb('视角/（地上/地下）模式转换');
     } else {
       setBreadcrumb('未知');
     }
