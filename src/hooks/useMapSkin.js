@@ -14,8 +14,10 @@ const useMapSkin = function({ map, skin = 'default' }) {
       opacitys.forEach(({ id, type, opacity }) => {
         if (id === 'background') {
           map.setPaintProperty('background', 'background-color', 'rgba(0, 0, 0, 1)');
-        } else if (id === 'buildings' || id === 'roads-case') {
+        } else if (id === 'roads-case') {
           map.setLayoutProperty(id, 'visibility', 'none');
+        } else if (id === 'buildings') {
+          map.setPaintProperty(id, `${type}-opacity`, opacity * 0.25);
         } else {
           map.setPaintProperty(id, `${type}-opacity`, opacity * 0.0625);
         }

@@ -2,9 +2,9 @@ import * as React from 'react';
 import ReactMapGL, { TRANSITION_EVENTS, LinearInterpolator } from 'react-map-gl';
 import { MapboxLayer } from '@deck.gl/mapbox';
 import { SimpleMeshLayer } from '@deck.gl/mesh-layers';
-import { CubeGeometry } from '@luma.gl/core';
+import { SphereGeometry } from '@luma.gl/core';
 import { MapUndergroundControl } from '@/components';
-import { useMapSkin } from '@/hooks';
+import { useRotateCamera, useMapSkin } from '@/hooks';
 import { LIGHT } from '@/services/mapbox';
 import styles from './index.css';
 
@@ -16,14 +16,26 @@ const IndexPage = () => {
   const [viewport, setViewport] = React.useState({
     longitude: MAPCENTRE[0],
     latitude: MAPCENTRE[1],
-    zoom: 12,
-    bearing: 20,
+    zoom: 16,
+    bearing: 0,
     pitch: 60,
     scrollZoom: !1,
     dragPan: !1,
-    dragRotate: !0,
+    dragRotate: !1,
     doubleClickZoom: !1,
   });
+
+  const [rotateCameraViewport] = useRotateCamera({
+    viewport,
+    map,
+    disable: !0,
+    mode: 'spiral',
+    speed: 10,
+  });
+
+  React.useEffect(() => {
+    setViewport((viewport) => ({ ...viewport, ...rotateCameraViewport }));
+  }, [rotateCameraViewport]);
 
   const [mode, setMode] = React.useState('ground');
 
@@ -35,14 +47,14 @@ const IndexPage = () => {
     const mySimpleMeshLayer = new MapboxLayer({
       id: 'my-simple-mesh',
       type: SimpleMeshLayer,
-      data: [{ position: [114.27917, 30.5725] }],
-      mesh: new CubeGeometry(),
+      data: [{ position: [114.27917, 30.5735] }],
+      mesh: new SphereGeometry(),
       opacity: 1 * (mode === 'ground' ? 0.0625 : 0.8),
-      sizeScale: 150,
-      getColor: [235, 47, 150, 255],
-      getTranslation: mode === 'ground' ? [0, 0, -2000] : [0, 0, 2000],
+      sizeScale: 35,
+      getColor: [24, 144, 255, 255],
+      getTranslation: mode === 'ground' ? [0, 0, -500] : [0, 0, 100],
     });
-    map.addLayer(mySimpleMeshLayer);
+    map.addLayer(mySimpleMeshLayer, 'buildings');
     return () => {
       map.getLayer('my-simple-mesh') && map.removeLayer('my-simple-mesh');
     };
